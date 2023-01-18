@@ -734,7 +734,7 @@ class BM25_from_index:
                 pass
         return idf
 
-    def search(self, queries, N=3):
+    def search(self, queries, candidates, N=3):
         """
         This function calculate the bm25 score for given query and document.
         We need to check only documents which are 'candidates' for a given query.
@@ -754,7 +754,7 @@ class BM25_from_index:
         # YOUR CODE HERE
         dict_of_query = {}
         for querry in queries.keys():
-            doc_candidates = get_candidate_documents_and_scores(queries[querry], self.index, self.words,self.file1)
+            doc_candidates = candidates
             self.idf = self.calc_idf(queries[querry])
             dict_of_query[querry] = self._score(queries[querry],doc_candidates)
         for querry in dict_of_query.keys():
